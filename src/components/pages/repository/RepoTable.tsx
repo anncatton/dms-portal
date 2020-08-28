@@ -1,9 +1,11 @@
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 
 import { Table } from '@arranger/components/dist/Arranger';
+
 import { PageContentProps } from './index';
 import { useTheme } from 'src/ThemeProvider';
 import defaultTheme from '../../../theme';
+import { Tooltip } from 'react-tippy';
 import lock from '../../../theme/icons/lock.svg';
 import download from '../../../theme/icons/download.svg';
 
@@ -33,6 +35,9 @@ const getTableStyle = (theme: typeof defaultTheme) => css`
         &:hover {
           background-color: ${theme.colors.secondary_light};
         }
+        &:focus {
+          outline: none;
+        }
       }
       & .buttonWrapper button:before {
         content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 20 20'%3E%3Cpath fill='%23003055' fill-rule='evenodd' d='M1.32 17.162h17.162c.729 0 1.32.59 1.32 1.32 0 .73-.591 1.32-1.32 1.32H1.32c-.729 0-1.32-.59-1.32-1.32 0-.73.591-1.32 1.32-1.32zm4.93-8.87l2.232 2.227V1.512c0-.774.63-1.402 1.406-1.402.777 0 1.406.628 1.406 1.402v9.032l2.257-2.252c.55-.548 1.44-.548 1.989 0 .549.547.55 1.435 0 1.983l-4.976 4.963c-.366.365-.96.365-1.327 0l-4.975-4.963c-.549-.548-.549-1.435 0-1.983.55-.548 1.439-.548 1.988 0z'/%3E%3C/svg%3E%0A");
@@ -50,6 +55,32 @@ const getTableStyle = (theme: typeof defaultTheme) => css`
       & .dropDownButton svg {
         display: none;
       }
+      & div.dropDownContent {
+        right: 7px !important;
+        border-radius: 5px;
+        ${theme.shadow.default};
+      }
+      & .dropDownContent {
+        max-width: 200px;
+        max-height: 285px;
+        overflow-y: scroll;
+        top: 82%;
+
+        ${theme.typography.label};
+        font-weight: normal;
+
+        /* left-orient checkboxes */
+        & .dropDownContentElement {
+          margin-left: 15px;
+          padding-left: 8px;
+          position: relative;
+        }
+        & .dropDownContentElement input[type='checkbox' i] {
+          position: absolute;
+          left: -17px;
+          bottom: 4px;
+        }
+      }
     }
   }
   & .ReactTable {
@@ -62,12 +93,18 @@ const getTableStyle = (theme: typeof defaultTheme) => css`
     }
     & .rt-tbody {
       border: 1px solid ${theme.colors.grey_3};
+      & .rt-td {
+        border-right: 1px solid ${theme.colors.grey_3};
+        padding: 6px 5px 3px;
+      }
     }
     & .rt-thead {
       border-top: 1px solid ${theme.colors.grey_3};
       border-right: 1px solid ${theme.colors.grey_3};
       border-left: 1px solid ${theme.colors.grey_3};
       & .rt-tr .rt-th {
+        border-right: 1px solid ${theme.colors.grey_3};
+        padding: 5px 5px 4px;
         &.-sort-asc {
           box-shadow: inset 0 3px 0 0 ${theme.colors.secondary};
         }
@@ -100,18 +137,18 @@ const getTableStyle = (theme: typeof defaultTheme) => css`
       border-bottom: none;
       border-top: none;
       &:hover {
-        background: ${theme.colors.grey_1};
+        background: ${theme.colors.grey_highlight};
       }
     }
     & .rt-tr-group .rt-tr.-even {
       &:hover {
-        background: ${theme.colors.grey_1};
+        background: ${theme.colors.grey_highlight};
       }
     }
     & .rt-tr-group .rt-tr.-odd {
       background-color: ${theme.colors.grey_1};
       &:hover {
-        background: ${theme.colors.grey_1};
+        background: ${theme.colors.grey_highlight};
       }
     }
     & .pagination-bottom {
@@ -166,7 +203,7 @@ const getTableStyle = (theme: typeof defaultTheme) => css`
   }
 `;
 
-const RepoTable = (props: PageContentProps, foo: any) => {
+const RepoTable = (props: PageContentProps) => {
   const theme = useTheme();
 
   return (
@@ -178,35 +215,49 @@ const RepoTable = (props: PageContentProps, foo: any) => {
         exportTSVText={'Download'}
         customColumns={[
           {
-            index: -1,
+            index: 9001,
             content: {
               Header: 'Actions',
               accessor: 'object_id',
               Cell: ({ original }) => {
                 if (original.file_access === 'open') {
                   return (
-                    <span className="td-actions">
-                      <img
-                        src={download}
-                        css={css`
-                          width: 16px;
-                          height: 16px;
-                        `}
-                      />
-                    </span>
+                    <Tooltip
+                      html={<span>Download File</span>}
+                      position="bottom"
+                    >
+                      <span className="td-actions">
+                        <img
+                          src={download}
+                          css={css`
+                            width: 16px;
+                            height: 16px;
+                          `}
+                        />
+                      </span>
+                    </Tooltip>
                   );
                 } else {
                   return (
-                    <span className="td-actions">
-                      <img
-                        src={lock}
-                        css={css`
-                          fill: ${theme.colors.grey_4};
-                          width: 10px;
-                          height: 16px;
-                        `}
-                      />
-                    </span>
+                    <Tooltip
+                      unmountHTMLWhenHide
+                      position="bottom"
+                      interactive
+                      html={
+                        <span>Please log in to download controlled files</span>
+                      }
+                    >
+                      <span className="td-actions">
+                        <img
+                          src={lock}
+                          css={css`
+                            fill: ${theme.colors.grey_4};
+                            width: 10px;
+                            height: 16px;
+                          `}
+                        />
+                      </span>
+                    </Tooltip>
                   );
                 }
               },

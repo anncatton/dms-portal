@@ -10,6 +10,7 @@ const grey = {
   grey_4: '#cecfd3',
   grey_5: '#aeafb3',
   grey_6: '#5e6068',
+  grey_highlight: '#eceff2',
 };
 
 const primary = {
