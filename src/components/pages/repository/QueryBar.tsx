@@ -41,7 +41,7 @@ const getCss = (theme: typeof defaultTheme) => css`
       background-color: ${theme.colors.white};
       color: ${theme.colors.accent_dark};
       &:hover {
-        background-color: ${theme.colors.accent_1};
+        background-color: ${theme.colors.secondary_light};
       }
       padding: 0 12px;
       font-weight: 600;

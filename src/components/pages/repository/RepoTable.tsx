@@ -31,7 +31,7 @@ const getTableStyle = (theme: typeof defaultTheme) => css`
         color: ${theme.colors.accent_dark};
         ${theme.typography.subheading2};
         &:hover {
-          background-color: ${theme.colors.accent_1};
+          background-color: ${theme.colors.secondary_light};
         }
       }
       & .buttonWrapper button:before {
@@ -55,6 +55,11 @@ const getTableStyle = (theme: typeof defaultTheme) => css`
   & .ReactTable {
     background-color: ${theme.colors.white};
     border: none;
+    &.rt-tr-group .rt-tr {
+      &.selected {
+        background-color: pink;
+      }
+    }
     & .rt-tbody {
       border: 1px solid ${theme.colors.grey_3};
     }
@@ -62,6 +67,17 @@ const getTableStyle = (theme: typeof defaultTheme) => css`
       border-top: 1px solid ${theme.colors.grey_3};
       border-right: 1px solid ${theme.colors.grey_3};
       border-left: 1px solid ${theme.colors.grey_3};
+      & .rt-tr .rt-th {
+        &.-sort-asc {
+          box-shadow: inset 0 3px 0 0 ${theme.colors.secondary};
+        }
+        &.-sort-desc {
+          box-shadow: inset 0 -3px 0 0 ${theme.colors.secondary};
+        }
+        &:focus {
+          outline: none;
+        }
+      }
     }
     & .rt-thead .rt-th {
       ${theme.typography.data};
