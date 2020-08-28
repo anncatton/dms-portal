@@ -83,7 +83,6 @@ const getTableStyle = (theme: typeof defaultTheme) => css`
     & .rt-tr-group {
       border-bottom: none;
       border-top: none;
-
       &:hover {
         background: ${theme.colors.grey_1};
       }

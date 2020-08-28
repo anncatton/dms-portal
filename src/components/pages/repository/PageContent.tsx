@@ -1,5 +1,4 @@
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
-import { Row, Col, Container } from 'react-grid-system';
 import React from 'react';
 
 import Facets from './Facets';
@@ -11,31 +10,50 @@ import { useTheme } from 'src/ThemeProvider';
 const PageContent = (props: PageContentProps) => {
   const theme = useTheme();
   return (
-    <Container xl>
-      <Row>
-        <Col
-          md={2.2}
+    <div
+      css={css`
+        flex: 1;
+        margin: 0 15px 0 0;
+      `}
+    >
+      <div
+        css={css`
+          display: flex;
+          flex-direction: row;
+          margin-left: 0;
+        `}
+      >
+        <div
           css={css`
-            max-width: 250px !important;
+            flex: 3;
+            flex-direction: column;
+            min-width: 250px;
+            max-width: 270px;
             padding-top: 12px;
             background-color: ${theme.colors.white};
           `}
         >
-          <Row
+          <div
             css={css`
               height: 30px;
             `}
           >
             Filters
-          </Row>
+          </div>
           <Facets {...props} />
-        </Col>
-        <Col md={9.8}>
+        </div>
+        <div
+          css={css`
+            margin-left: 15px;
+            flex: 8.5;
+            flex-direction: column;
+          `}
+        >
           <QueryBar {...props} />
           <RepoTable {...props} />
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </div>
+    </div>
   );
 };
 

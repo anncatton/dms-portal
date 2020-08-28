@@ -8,6 +8,9 @@ const PageLayout = ({ children }: { children: any }) => {
     <div
       css={css`
         background-color: ${theme.colors.grey_2};
+        display: grid;
+        grid-template-rows: 50px 1fr;
+        min-height: 100vh;
       `}
     >
       <div
@@ -21,9 +24,7 @@ const PageLayout = ({ children }: { children: any }) => {
           z-index: 5;
           width: 100%;
         `}
-      >
-        Header
-      </div>
+      ></div>
       {children}
       <div
         css={css`
@@ -31,9 +32,7 @@ const PageLayout = ({ children }: { children: any }) => {
           background-color: ${theme.colors.white};
           border-top: 1px solid ${theme.colors.grey_3};
         `}
-      >
-        Footer
-      </div>
+      ></div>
     </div>
   );
 };
