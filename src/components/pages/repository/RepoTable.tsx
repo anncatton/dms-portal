@@ -8,6 +8,7 @@ import defaultTheme from '../../../theme';
 import { Tooltip } from 'react-tippy';
 import lock from '../../../theme/icons/lock.svg';
 import download from '../../../theme/icons/download.svg';
+import CustomTooltip from '../../CustomTooltip';
 
 const getTableStyle = (theme: typeof defaultTheme) => css`
   border-radius: 5px;
@@ -223,8 +224,10 @@ const RepoTable = (props: PageContentProps) => {
                 if (original.file_access === 'open') {
                   return (
                     <Tooltip
+                      unmountHTMLWhenHide
+                      position="left"
+                      interactive
                       html={<span>Download File</span>}
-                      position="bottom"
                     >
                       <span className="td-actions">
                         <img
@@ -239,9 +242,9 @@ const RepoTable = (props: PageContentProps) => {
                   );
                 } else {
                   return (
-                    <Tooltip
+                    <CustomTooltip
                       unmountHTMLWhenHide
-                      position="bottom"
+                      position="left"
                       interactive
                       html={
                         <span>Please log in to download controlled files</span>
@@ -257,7 +260,7 @@ const RepoTable = (props: PageContentProps) => {
                           `}
                         />
                       </span>
-                    </Tooltip>
+                    </CustomTooltip>
                   );
                 }
               },
