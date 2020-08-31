@@ -3,7 +3,6 @@
 import { Table } from '@arranger/components/dist/Arranger';
 
 import { PageContentProps } from './index';
-import { useTheme } from 'src/ThemeProvider';
 import defaultTheme from '../../../theme';
 import { Tooltip } from 'react-tippy';
 import lock from '../../../theme/icons/lock.svg';
@@ -205,10 +204,8 @@ const getTableStyle = (theme: typeof defaultTheme) => css`
 `;
 
 const RepoTable = (props: PageContentProps) => {
-  const theme = useTheme();
-
   return (
-    <div css={getTableStyle(theme)}>
+    <div css={(theme) => getTableStyle(theme)}>
       <Table
         {...props}
         showFilterInput={false}
@@ -255,7 +252,7 @@ const RepoTable = (props: PageContentProps) => {
                         <img
                           alt="Log in to download files"
                           src={lock}
-                          css={css`
+                          css={(theme) => css`
                             fill: ${theme.colors.grey_4};
                             width: 10px;
                             height: 16px;

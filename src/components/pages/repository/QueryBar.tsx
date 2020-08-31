@@ -2,7 +2,6 @@
 
 import { CurrentSQON } from '@arranger/components/dist/Arranger';
 import { Row } from 'react-grid-system';
-import { useTheme } from 'src/ThemeProvider';
 import defaultTheme from '../../../theme';
 import { PageContentProps } from '.';
 
@@ -122,11 +121,10 @@ const getCss = (theme: typeof defaultTheme) => css`
 `;
 
 const QueryBar = (props: PageContentProps) => {
-  const theme = useTheme();
   return (
     <Row
       gutterWidth={2}
-      css={css`
+      css={(theme) => css`
         min-height: 48px;
         margin: 10px 0;
         background-color: ${theme.colors.white};

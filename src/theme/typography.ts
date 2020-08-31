@@ -1,5 +1,10 @@
-const regular = `
+/** @jsx jsx */ import { css } from '@emotion/core';
+
+const baseFont = css`
   font-family: Lato, sans-serif;
+`;
+const regular = css`
+  ${baseFont}
   font-size: inherit;
   font-weight: inherit;
   font-style: inherit;
@@ -8,8 +13,8 @@ const regular = `
   letter-spacing: inherit;
 `;
 
-const heading = `
-  font-family: Lato, sans-serif;
+const heading = css`
+  ${baseFont}
   font-size: 18px;
   font-weight: bold;
   font-style: normal;
@@ -18,8 +23,8 @@ const heading = `
   letter-spacing: normal;
 `;
 
-const subheading = `
-  font-family: Lato, sans-serif;
+const subheading = css`
+  ${baseFont}
   font-size: 16px;
   font-weight: bold;
   font-style: normal;
@@ -28,8 +33,8 @@ const subheading = `
   letter-spacing: normal;
 `;
 
-const subheading2 = `
-  font-family: Lato, sans-serif;
+const subheading2 = css`
+  ${baseFont}
   font-size: 14px;
   font-weight: bold;
   font-style: normal;
@@ -38,8 +43,8 @@ const subheading2 = `
   letter-spacing: normal;
 `;
 
-const label = `
-  font-family: Lato, sans-serif;
+const label = css`
+  ${baseFont}
   font-size: 12px;
   font-weight: bold;
   font-style: normal;
@@ -48,8 +53,8 @@ const label = `
   letter-spacing: normal;
 `;
 
-const label2 = `
-  font-family: Lato, sans-serif;
+const label2 = css`
+  ${baseFont}
   font-size: 10px;
   font-weight: bold;
   font-style: normal;
@@ -58,8 +63,8 @@ const label2 = `
   letter-spacing: normal;
 `;
 
-const data = `
-  font-family: Lato, sans-serif;
+const data = css`
+  ${baseFont}
   font-size: 13px;
   font-weight: normal;
   font-style: normal;
