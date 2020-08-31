@@ -1,10 +1,10 @@
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 
-import React from 'react';
 import { CurrentSQON } from '@arranger/components/dist/Arranger';
 import { Row } from 'react-grid-system';
 import { useTheme } from 'src/ThemeProvider';
 import defaultTheme from '../../../theme';
+import { PageContentProps } from '.';
 
 const getCss = (theme: typeof defaultTheme) => css`
   ${theme.shadow.default};
@@ -121,7 +121,7 @@ const getCss = (theme: typeof defaultTheme) => css`
   }
 `;
 
-const QueryBar = (props: any) => {
+const QueryBar = (props: PageContentProps) => {
   const theme = useTheme();
   return (
     <Row

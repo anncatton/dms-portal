@@ -8,12 +8,18 @@ import { Global } from '@emotion/core';
 import { merge } from 'lodash';
 
 type TooltipProps = {
-  html: React.ReactElement;
-  position: string;
-  preventOverflow: boolean;
+  disabled?: boolean;
+  position?: 'top' | 'bottom' | 'left' | 'right';
+  interactive?: boolean;
+  popperOptions?: {};
+  html?: React.ReactNode;
+  unmountHTMLWhenHide?: boolean;
+  style?: {};
+  preventOverflow?: boolean;
+  children: React.ReactNode;
 };
 
-const CustomTooltip: React.ComponentType<any> = ({
+const CustomTooltip: React.ComponentType<TooltipProps> = ({
   html,
   position = 'top',
   preventOverflow = false,

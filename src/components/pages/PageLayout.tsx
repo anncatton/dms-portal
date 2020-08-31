@@ -1,7 +1,7 @@
 /** @jsx jsx */ import { jsx, css } from '@emotion/core';
 import { useTheme } from 'src/ThemeProvider';
 
-const PageLayout = ({ children }: { children: any }) => {
+const PageLayout = ({ children }: { children: React.ReactNode }) => {
   const theme = useTheme();
 
   return (

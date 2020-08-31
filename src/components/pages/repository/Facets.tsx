@@ -1,9 +1,9 @@
-/** @jsx jsx */ import { jsx, css } from '@emotion/core';
+/** @jsx jsx */ import { jsx } from '@emotion/core';
 
-import React from 'react';
 import { Aggregations } from '@arranger/components/dist/Arranger';
+import { PageContentProps } from '.';
 
-const Facets = (props: any) => {
+const Facets = (props: PageContentProps) => {
   return <Aggregations {...props} />;
 };
 

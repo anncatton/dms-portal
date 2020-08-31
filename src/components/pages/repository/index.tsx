@@ -11,9 +11,19 @@ export interface PageContentProps {
   setSelectedTableRows: (string) => void;
   projectId: string;
   index: string;
-  api: Function;
-  setSQON: Function;
-  fetchData?: Function;
+  api: ({
+    endpoint,
+    body,
+    headers,
+    method,
+  }: {
+    endpoint: string;
+    body: string;
+    headers: any;
+    method: string;
+  }) => Promise<any>;
+  setSQON: (RepoFiltersType) => void;
+  fetchData?: (projectId: string) => Promise<any>;
 }
 
 const RepositoryPage = () => {

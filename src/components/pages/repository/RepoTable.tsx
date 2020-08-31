@@ -231,6 +231,7 @@ const RepoTable = (props: PageContentProps) => {
                     >
                       <span className="td-actions">
                         <img
+                          alt="Download File"
                           src={download}
                           css={css`
                             width: 16px;
@@ -252,6 +253,7 @@ const RepoTable = (props: PageContentProps) => {
                     >
                       <span className="td-actions">
                         <img
+                          alt="Log in to download files"
                           src={lock}
                           css={css`
                             fill: ${theme.colors.grey_4};
