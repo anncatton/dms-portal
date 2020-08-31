@@ -220,7 +220,7 @@ const RepoTable = (props: PageContentProps) => {
             content: {
               Header: 'Actions',
               accessor: 'object_id',
-              Cell: ({ original }) => {
+              Cell: ({ original }: { original: any }) => {
                 if (original.file_access === 'open') {
                   return (
                     <Tooltip

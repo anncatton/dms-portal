@@ -8,7 +8,7 @@ import { RepoFiltersType } from './types';
 export interface PageContentProps {
   sqon: RepoFiltersType;
   selectedTableRows: string[];
-  setSelectedTableRows: (string) => void;
+  setSelectedTableRows: (id: string) => void;
   projectId: string;
   index: string;
   api: ({
@@ -22,7 +22,7 @@ export interface PageContentProps {
     headers: any;
     method: string;
   }) => Promise<any>;
-  setSQON: (RepoFiltersType) => void;
+  setSQON: (sqon: RepoFiltersType) => void;
   fetchData?: (projectId: string) => Promise<any>;
 }
 
