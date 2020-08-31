@@ -51,7 +51,7 @@ const label = `
 const label2 = `
   font-family: Lato, sans-serif;
   font-size: 10px;
-  font-weight: bold;
+  font-weight: normal;
   font-style: normal;
   font-stretch: normal;
   line-height: 14px;

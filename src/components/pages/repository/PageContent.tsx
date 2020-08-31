@@ -32,13 +32,6 @@ const PageContent = (props: PageContentProps) => {
             background-color: ${theme.colors.white};
           `}
         >
-          <div
-            css={css`
-              height: 30px;
-            `}
-          >
-            Filters
-          </div>
           <Facets {...props} />
         </div>
         <div
