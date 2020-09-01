@@ -7,27 +7,38 @@ import defaultTheme from '../../../theme';
 import React from 'react';
 
 const getFacetStyles = (theme: typeof defaultTheme) => css`
-  padding: 6px 8px 6px 0;
   .aggregations {
     .aggregation-card {
+      border-bottom: 1px solid ${theme.colors.grey_4};
+      padding-right: 8px;
       .header {
         padding: 5px 0 6px 6px;
         .title-wrapper {
+          align-items: flex-start;
+          .title-control {
+            flex: 1;
+            cursor: pointer;
+          }
           &.collapsed {
             background-color: ${theme.colors.grey_2};
             margin: -5px -8px -6px -6px;
             padding: 5px 8px 6px 6px;
-            border-bottom: 1px solid ${theme.colors.grey_4};
           }
           & .title {
             ${theme.typography.subheading}
             color: ${theme.colors.accent_dark};
             margin-left: 8px;
+            display: inline-block;
+            width: 90%;
           }
           & .arrow {
+            display: inline-block;
+            height: 100%;
+            vertical-align: top;
+            transition: all 0s !important;
             &:after {
               display: inline-block;
-              transform: translateY(-2px);
+              transform: translateY(-2px) rotate(270deg);
               content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 12 12'%3E%3Cpath fill='%23151c3d' fill-rule='evenodd' d='M9.952 3.342c.468-.456 1.228-.456 1.697 0 .234.228.351.526.351.825 0 .298-.117.597-.351.825l-4.8 4.666c-.469.456-1.23.456-1.697 0l-4.8-4.666c-.47-.456-.47-1.194 0-1.65.468-.456 1.228-.456 1.696 0L6 7.184l3.952-3.842z'/%3E%3C/svg%3E ");
             }
           }
@@ -35,8 +46,7 @@ const getFacetStyles = (theme: typeof defaultTheme) => css`
             & .arrow {
               &:after {
                 display: inline-block;
-                padding-top: 0px;
-                transform: rotate(-90deg) translateY(-2px);
+                transform: translateY(2px) rotate(-90deg);
                 content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 12 12'%3E%3Cpath fill='%23151c3d' fill-rule='evenodd' d='M9.952 3.342c.468-.456 1.228-.456 1.697 0 .234.228.351.526.351.825 0 .298-.117.597-.351.825l-4.8 4.666c-.469.456-1.23.456-1.697 0l-4.8-4.666c-.47-.456-.47-1.194 0-1.65.468-.456 1.228-.456 1.696 0L6 7.184l3.952-3.842z'/%3E%3C/svg%3E ");
               }
             }
@@ -61,6 +71,9 @@ const getFacetStyles = (theme: typeof defaultTheme) => css`
         & .bucket-link {
           display: flex;
           align-items: center;
+        }
+        &:last-of-type {
+          padding-bottom: 6px;
         }
       }
       & .showMore-wrapper {
@@ -101,29 +114,35 @@ const getFacetStyles = (theme: typeof defaultTheme) => css`
           margin-left: 5px;
         }
       }
-      & .action-icon svg {
-        fill: ${theme.colors.secondary};
-        width: 14px;
-        height: 14px;
-        padding-bottom: 3px;
+
+      & .action-icon {
+        margin-left: 5px;
+        margin-top: 2px;
+        svg {
+          fill: ${theme.colors.secondary};
+          width: 14px;
+          height: 14px;
+          padding-bottom: 3px;
+        }
       }
-      &:first-child {
+
+      &:first-of-type {
         margin-top: 0;
       }
       border-left: 3px solid;
-      &:nth-child(5n + 1) {
+      &:nth-of-type(5n + 1) {
         border-left-color: ${theme.colors.secondary};
       }
-      &:nth-child(5n + 2) {
+      &:nth-of-type(5n + 2) {
         border-left-color: ${theme.colors.accent2};
       }
-      &:nth-child(5n + 3) {
+      &:nth-of-type(5n + 3) {
         border-left-color: ${theme.colors.warning};
       }
-      &:nth-child(5n + 4) {
+      &:nth-of-type(5n + 4) {
         border-left-color: ${theme.colors.primary};
       }
-      &:nth-child(5n + 5) {
+      &:nth-of-type(5n + 5) {
         border-left-color: ${theme.colors.accent3};
       }
     }
@@ -141,6 +160,9 @@ const Facets = (props: PageContentProps) => {
       <h2
         css={css`
           ${theme.typography.subheading}
+          padding: 6px 0 2px 8px;
+          margin: 0;
+          border-bottom: 1px solid ${theme.colors.grey_4};
         `}
       >
         Filters
