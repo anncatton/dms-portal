@@ -2,22 +2,38 @@
 
 import { Aggregations } from '@arranger/components/dist/Arranger';
 import { PageContentProps } from '.';
-import { useTheme } from 'src/ThemeProvider';
 import defaultTheme from '../../../theme';
-import React from 'react';
 
 const getFacetStyles = (theme: typeof defaultTheme) => css`
+  .input-range-wrapper div {
+    ${theme.typography.label2}
+    font-weight: bold;
+    background-color: ${theme.colors.grey_3};
+    border-radius: 3px;
+    padding: 0 4px;
+    &:last-child,
+    &:nth-child(4) {
+      background-color: ${theme.colors.white};
+      color: ${theme.colors.grey_6};
+    }
+    &:nth-child(3) {
+      background-color: ${theme.colors.white};
+    }
+  }
   .aggregations {
     .aggregation-card {
-      border-bottom: 1px solid ${theme.colors.grey_4};
+      border-bottom: 1px solid ${theme.colors.grey_3};
       padding-right: 8px;
       .header {
         padding: 5px 0 6px 6px;
         .title-wrapper {
           align-items: flex-start;
+          border-bottom: 1px solid ${theme.colors.grey_2};
+          padding-bottom: 5px;
           .title-control {
             flex: 1;
             cursor: pointer;
+            padding-top: 2px;
           }
           &.collapsed {
             background-color: ${theme.colors.grey_2};
@@ -30,6 +46,7 @@ const getFacetStyles = (theme: typeof defaultTheme) => css`
             margin-left: 8px;
             display: inline-block;
             width: 90%;
+            line-height: 20px;
           }
           & .arrow {
             display: inline-block;
@@ -38,7 +55,7 @@ const getFacetStyles = (theme: typeof defaultTheme) => css`
             transition: all 0s !important;
             &:after {
               display: inline-block;
-              transform: translateY(-2px) rotate(270deg);
+              transform: translateX(-2px) rotate(270deg);
               content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 12 12'%3E%3Cpath fill='%23151c3d' fill-rule='evenodd' d='M9.952 3.342c.468-.456 1.228-.456 1.697 0 .234.228.351.526.351.825 0 .298-.117.597-.351.825l-4.8 4.666c-.469.456-1.23.456-1.697 0l-4.8-4.666c-.47-.456-.47-1.194 0-1.65.468-.456 1.228-.456 1.696 0L6 7.184l3.952-3.842z'/%3E%3C/svg%3E ");
             }
           }
@@ -46,7 +63,7 @@ const getFacetStyles = (theme: typeof defaultTheme) => css`
             & .arrow {
               &:after {
                 display: inline-block;
-                transform: translateY(2px) rotate(-90deg);
+                transform: translateX(-2px) rotate(-90deg);
                 content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 12 12'%3E%3Cpath fill='%23151c3d' fill-rule='evenodd' d='M9.952 3.342c.468-.456 1.228-.456 1.697 0 .234.228.351.526.351.825 0 .298-.117.597-.351.825l-4.8 4.666c-.469.456-1.23.456-1.697 0l-4.8-4.666c-.47-.456-.47-1.194 0-1.65.468-.456 1.228-.456 1.696 0L6 7.184l3.952-3.842z'/%3E%3C/svg%3E ");
               }
             }
@@ -115,6 +132,56 @@ const getFacetStyles = (theme: typeof defaultTheme) => css`
         }
       }
 
+      & .bucket .range-wrapper {
+        .input-range {
+          margin-bottom: 30px;
+        }
+
+        .input-range__track.input-range__track--background {
+          .input-range__track--active {
+            background-color: ${theme.colors.secondary};
+          }
+          .input-range__slider-container {
+            .input-range__slider {
+              background-color: ${theme.colors.white};
+              border-color: ${theme.colors.grey_5};
+              ${theme.shadow.default}
+              padding: 0;
+              border-radius: 100%;
+            }
+          }
+        }
+      }
+      .toggle-button {
+        ${theme.typography.data};
+        padding: 2px 5px 8px 5px;
+        margin-left: 5px;
+        .toggle-button-option {
+          border: 1px solid ${theme.colors.grey_5};
+          &:nth-of-type(2) {
+            border-left: 0px;
+            border-right: 0px;
+          }
+        }
+        .toggle-button-option .bucket-count {
+          ${theme.typography.label2}
+          display: inline-block;
+          background-color: ${theme.colors.grey_3};
+          padding: 0 3px;
+          border-radius: 3px;
+        }
+        .toggle-button-option.active {
+          background-color: ${theme.colors.secondary_light};
+          .bucket-count {
+            background-color: ${theme.colors.secondary_2};
+          }
+        }
+        .toggle-button-option.disabled {
+          background-color: ${theme.colors.grey_2};
+          color: ${theme.colors.grey_6};
+        }
+      }
+
       & .action-icon {
         margin-left: 5px;
         margin-top: 2px;
@@ -150,19 +217,14 @@ const getFacetStyles = (theme: typeof defaultTheme) => css`
 `;
 
 const Facets = (props: PageContentProps) => {
-  const theme = useTheme();
-  // const [facetPanelCollapsed, setFacetPanelCollapsed] = React.useState(false);
-  // const onFacetCollapserClick = () => {
-  //   setFacetPanelCollapsed(!facetPanelCollapsed);
-  // };
   return (
-    <div css={getFacetStyles(theme)}>
+    <div css={(theme) => getFacetStyles(theme)}>
       <h2
-        css={css`
+        css={(theme) => css`
           ${theme.typography.subheading}
           padding: 6px 0 2px 8px;
           margin: 0;
-          border-bottom: 1px solid ${theme.colors.grey_4};
+          border-bottom: 1px solid ${theme.colors.grey_3};
         `}
       >
         Filters
