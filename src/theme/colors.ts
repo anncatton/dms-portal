@@ -33,6 +33,7 @@ const secondary = {
   secondary_dark: '#109ed9',
   secondary_accessible: '#0c7cac',
   secondary_1: '#d2f1fb',
+  secondary_2: '#aee5f8',
 };
 
 const accent2 = {

@@ -28,17 +28,10 @@ const PageContent = (props: PageContentProps) => {
             flex-direction: column;
             min-width: 250px;
             max-width: 270px;
-            padding-top: 12px;
             background-color: ${theme.colors.white};
+            ${theme.shadow.default}
           `}
         >
-          <div
-            css={css`
-              height: 30px;
-            `}
-          >
-            Filters
-          </div>
           <Facets {...props} />
         </div>
         <div

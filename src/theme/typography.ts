@@ -56,7 +56,7 @@ const label = css`
 const label2 = css`
   ${baseFont}
   font-size: 10px;
-  font-weight: bold;
+  font-weight: normal;
   font-style: normal;
   font-stretch: normal;
   line-height: 14px;
